@@ -4,7 +4,6 @@ import { client } from "../index";
 
 export async function fetchSlashCommands() {
   const commandsPath = path.join(__dirname, "../commands");
-  console.log(commandsPath);
   const commandFiles = fs
     .readdirSync(commandsPath)
     .filter((fileName) => fileName.endsWith("js") || fileName.endsWith("ts"));

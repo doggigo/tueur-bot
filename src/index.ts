@@ -7,10 +7,11 @@ import "./client-augmentation.d.ts";
 // Local imports
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
+import { ratio } from "./commands/ratio.ts";
 
 export const { TOKEN } = Bun.env;
 
-const intents: GatewayIntentBits[] = [GatewayIntentBits.Guilds];
+const intents: GatewayIntentBits[] = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent];
 
 export const client = new Client({
   intents: intents,
@@ -34,6 +35,7 @@ client.on("interactionCreate", async (interaction) => {
     );
     return;
   }
+
   try {
     await command.execute(interaction);
   } catch (error) {
@@ -51,5 +53,15 @@ client.on("interactionCreate", async (interaction) => {
     }
   }
 });
+
+client.on('messageCreate', async (message) => {
+  let content = message.cleanContent.toLowerCase()
+  if(content.includes('ratio')) {
+    ratio(message);
+  }
+  if(content.includes('qui voc')) {
+    message.reply('j arrive 🙂');
+  }
+})
 
 client.login(TOKEN);
