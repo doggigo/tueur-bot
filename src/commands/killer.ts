@@ -8,5 +8,5 @@ export async function execute(interaction: CommandInteraction) {
   let res = await fetch("https://tueur.robinmerde.fr/", { method: "GET" });
   let json = await res.json() as string;
   if(!json) return;
-  await interaction.reply({ content: json });
+  await interaction.followUp({ content: json as string });
 }
