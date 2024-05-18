@@ -5,6 +5,7 @@ export const data = new SlashCommandBuilder()
   .setDescription("🙂");
 
 export async function execute(interaction: CommandInteraction) {
+  await interaction.deferReply();
   let res = await fetch("https://tueur.robinmerde.fr/", { method: "GET" });
   let json = await res.json() as string;
   if(!json) return;
