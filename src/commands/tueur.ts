@@ -11,8 +11,7 @@ import {
 } from "discord.js";
 import { client } from "../index";
 
-const updateTakenNumbers = await import('./updateTakenNumbers');
-
+const updateTakenNumbers = await import("./updateTakenNumbers");
 
 export const data = new SlashCommandBuilder()
   .setName("tueur")
