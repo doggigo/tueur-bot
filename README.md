@@ -1,15 +1,15 @@
-# tueur-bot
+# TUEUR BOT
 
-To install dependencies:
-
-```bash
-bun install
+### .env :
 ```
+TOKEN
 
-To run:
+TUEUR_ROLE_ID             
+TAKEN_NUMBERS_CHANNEL_ID
+TAKEN_NUMBERS_MESSAGE_ID
 
-```bash
-bun run src/index.ts
+TWITTER_CONSUMER_KEY
+TWITTER_CONSUMER_SECRET
+TWITTER_ACCESS_KEY
+TWITTER_ACCESS_SECRET
 ```
-
-This project was created using `bun init` in bun v1.1.2. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
