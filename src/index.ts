@@ -8,6 +8,7 @@ import "./client-augmentation.d.ts";
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
 import { ratio } from "./commands/ratio.ts";
+import { quivoc } from "./event/quivoc.ts";
 
 export const { TOKEN } = Bun.env;
 
@@ -57,10 +58,10 @@ client.on("interactionCreate", async (interaction) => {
 client.on('messageCreate', async (message) => {
   let content = message.cleanContent.toLowerCase()
   if(content.includes('ratio')) {
-    ratio(message);
+    await ratio(message);
   }
   if(content.includes('qui voc')) {
-    message.reply('j arrive 🙂');
+    await quivoc(message);
   }
 })
 
