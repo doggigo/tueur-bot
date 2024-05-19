@@ -13,8 +13,17 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator);
 
 export async function execute(interaction: CommandInteraction) {
-  const { TAKEN_NUMBERS_CHANNEL_ID, TAKEN_NUMBERS_MESSAGE_ID } = Bun.env;
+  const { TAKEN_NUMBERS_CHANNEL_ID, TAKEN_NUMBERS_MESSAGE_ID, TUEUR_GUILD_ID } =
+    Bun.env;
   let guild = interaction.guild as Guild;
+
+  if (guild.id != TUEUR_GUILD_ID) {
+    interaction.reply({
+      content: "ca marche pas sur ce serveur",
+      ephemeral: true,
+    });
+    return;
+  }
 
   let channel = (await guild.channels.fetch(
     TAKEN_NUMBERS_CHANNEL_ID as string
@@ -26,8 +35,10 @@ export async function execute(interaction: CommandInteraction) {
 
   let taken = Array.from(
     guild.roles.cache.filter((role, _) => role.name.match(/tueur_\d+/)).values()
-  ).map((role) => role.name).sort((a,b) => parseInt(a.substring(6)) - parseInt(b.substring(6)));
-  
+  )
+    .map((role) => role.name)
+    .sort((a, b) => parseInt(a.substring(6)) - parseInt(b.substring(6)));
+
   let res = ["Tueurs pris :"].concat(taken);
   await message.edit({ content: res.join("\n") });
 }

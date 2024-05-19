@@ -25,7 +25,7 @@ export const data = new SlashCommandBuilder()
       .setRequired(true)
   );
 
-const { TUEUR_ROLE_ID } = Bun.env;
+const { TUEUR_ROLE_ID, TUEUR_GUILD_ID } = Bun.env;
 
 const getAllUsedNumbers = (guild: Guild) => {
   let roles = Array.from(
@@ -39,6 +39,16 @@ const createRole = async (guild: Guild, num: number) => {
 };
 
 export async function execute(interaction: CommandInteraction) {
+  let guild = interaction.guild as Guild;
+
+  if (guild.id != TUEUR_GUILD_ID) {
+    interaction.reply({
+      content: "ca marche pas sur ce serveur",
+      ephemeral: true,
+    });
+    return;
+  }
+
   let numero = interaction.options.get("numero")?.value as number;
 
   // si le numero existe deja
@@ -49,7 +59,7 @@ export async function execute(interaction: CommandInteraction) {
   }
 
   // sinon, on cree le role
-  let role = await createRole(interaction.guild as Guild, numero);
+  let role = await createRole(guild, numero);
   let tueurRole = (await interaction.guild?.roles.fetch(
     TUEUR_ROLE_ID as string,
     { cache: true }
