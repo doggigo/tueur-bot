@@ -15,8 +15,10 @@
   "dependencies": {
     "@discordjs/voice": "^0.17.0",
     "@types/fluent-ffmpeg": "^2.1.24",
+    "bun": "",
     "discord.js": "^14.15.2",
     "fluent-ffmpeg": "^2.1.2",
+    "latest": "",
     "twitter-api-v2": "^1.16.4"
   }
 }
