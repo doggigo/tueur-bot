@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "bun src/index.ts",
-    "screen": "screen -dmS tueurbot bun start"
+    "screen": " screen -L -Logfile ./logs.txt -dmS tueurbot bun start"
   },
   "devDependencies": {
     "@types/bun": "latest"

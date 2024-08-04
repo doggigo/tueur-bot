@@ -12,7 +12,10 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(null)
   .setDMPermission(false)
   .addStringOption(
-    new SlashCommandStringOption().setName("confession").setRequired(true)
+    new SlashCommandStringOption()
+      .setName("confession")
+      .setDescription("confession")
+      .setRequired(true)
   );
 
 export async function execute(interaction: CommandInteraction) {
@@ -22,7 +25,7 @@ export async function execute(interaction: CommandInteraction) {
   let embed = new EmbedBuilder()
     .setTitle("Confession Anonyme")
     .setColor(0x5e9cff)
-    .addFields({name: 'Confession :', value : confession})
+    .addFields({ name: "Confession :", value: confession })
     .setTimestamp()
     .setFooter({ text: "Fait avec la commande /confession" });
 
